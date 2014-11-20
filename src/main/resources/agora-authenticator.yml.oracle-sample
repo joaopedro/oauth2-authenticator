@@ -1,0 +1,30 @@
+database:
+    driverClass: oracle.jdbc.OracleDriver
+    url: jdbc\:oracle\:thin\:@localhost\:1521\:xe
+    user: agora-server
+    password: agora-server
+    properties:
+        charSet: UTF-8
+    maxWaitForConnection: 1s
+    validationQuery: "/* MyService Health Check */ SELECT 1"
+    minSize: 8
+    maxSize: 32
+    checkConnectionWhileIdle: false
+
+server:
+    applicationConnectors:
+    - type: http
+      port: 9600
+    adminConnectors:
+    - type: http
+      port: 9601
+
+bearerRealm: oauth2-provider
+
+logging:
+    level: WARN
+    loggers:
+        io.dropwizard: INFO
+        com.sinfic.agora.authentication: INFO
+    appenders:
+        - type: console

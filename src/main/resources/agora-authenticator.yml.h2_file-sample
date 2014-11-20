@@ -1,0 +1,31 @@
+database:
+    driverClass: org.h2.Driver
+    url: jdbc:h2:file:/tmp/agora-server;AUTO_SERVER=TRUE
+    user: sa
+    password:
+    properties:
+        charSet: UTF-8
+        hibernate.hbm2ddl.auto: create
+    maxWaitForConnection: 1s
+    validationQuery: "/* MyService Health Check */ SELECT 1"
+    minSize: 8
+    maxSize: 32
+    checkConnectionWhileIdle: false
+
+server:
+    applicationConnectors:
+    - type: http
+      port: 9600
+    adminConnectors:
+    - type: http
+      port: 9601
+
+bearerRealm: oauth2-provider
+
+logging:
+    level: WARN
+    loggers:
+        io.dropwizard: INFO
+        com.sinfic.agora.authentication: INFO
+    appenders:
+        - type: console
